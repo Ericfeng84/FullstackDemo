@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { v4 } from "uuid";
 
-const Edit = ({ setList,addCustomer,currentCustomer }) => {
+const Edit = ({ currentCustomer, updateCustomer }) => {
   function slickButton() {
       const customer =  {
           firstName,
@@ -10,7 +10,7 @@ const Edit = ({ setList,addCustomer,currentCustomer }) => {
       }
       console.log(customer)
 
-      addCustomer(customer);
+      updateCustomer(customer);
   }
 
   const [firstName, setFirstName] = useState(currentCustomer.firstName);
