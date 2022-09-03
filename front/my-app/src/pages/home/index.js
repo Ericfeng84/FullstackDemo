@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from "react";
-import Edit from "./Component/Edit";
+import Add from "./Component/add";
 import List from "./Component/List";
 import "./index.css";
 import { API_GET_DATA } from "../../gloable/constaint";
+import Edit from "./Component/edit";
 
 const Home = () => {
-  const [ListData, setListData] = useState([]);
-  const [newCustomer, setNewCustomer] = useState({});
+  const [customerList, setCustomerList] = useState([]);
+  const [customer, setCustomer] = useState({});
 
 
 
@@ -20,12 +21,12 @@ const Home = () => {
   }
 
   useEffect(() => {
-    fetchCustomer(setListData);
+    fetchCustomer(setCustomerList);
   }, []);
 
   // Post Request
   async function postData(newCustomer) {
-    // console.log("start post", newCustomer, JSON.stringify({ newCustomer }));
+    console.log("start post", newCustomer, JSON.stringify({ newCustomer }));
       const body = JSON.stringify( newCustomer );
       console.log(body)
       
@@ -39,14 +40,22 @@ const Home = () => {
     });
   }
 
-  useEffect(() => {
-    postData(newCustomer);
-  }, [newCustomer]);
+  function addCustomer(customer){
+    console.log("PostCustomer"+customer)
+    postData(customer).then(()=>fetchCustomer(setCustomerList))
+    console.log("Post Refresh")
+
+  }
+
+  // useEffect(() => {
+  //   postData(customer);
+  // }, [customer]);
 
   return (
     <div className="app">
-      <Edit setList={setListData} setNewCustomer={setNewCustomer} />
-      <List listData={ListData} deleteData={setListData} />
+      <Add setList={setCustomerList} setNewCustomer={setCustomer} addCustomer={addCustomer} />
+      <Edit currentCustomer={customer}/>
+      <List listData={customerList} deleteData={setCustomerList} editCustomer={setCustomer}/>
     </div>
   );
 };

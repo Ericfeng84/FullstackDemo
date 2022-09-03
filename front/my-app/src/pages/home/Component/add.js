@@ -1,29 +1,19 @@
 import { useState, useEffect, useRef } from "react";
 import { v4 } from "uuid";
 
-const Edit = ({ setList,setNewCustomer }) => {
-  function slickButten() {
-    setList(function (prevData) {
-      return [
-        ...prevData,
-        {
-          id: v4(),
-          firstName,
-          lastName,
-          email,
-        },
-      ];
-    })
-      setNewCustomer(function () {
-          return {
+const Add = ({ setList,addCustomer }) => {
+  function slickButton() {
+      const customer =  {
           firstName,
           LastName:lastName,
           email,
-        }
-    });
+      }
+      console.log(customer)
+
+      addCustomer(customer);
   }
 
-  const [firstName, setFirstName] = useState("test");
+  const [firstName, setFirstName] = useState();
   function updateFirstName(e) {
     setFirstName(e.target.value);
     console.log(firstName);
@@ -50,11 +40,11 @@ const Edit = ({ setList,setNewCustomer }) => {
       <input type="text" value={lastName} onChange={updateLastName} />
       <p>Email</p>
       <input type="email" value={email} onChange={updateEmail} />
-      <button className="add" onClick={slickButten}>
+      <button className="add" onClick={slickButton}>
         新增
       </button>
     </div>
   );
 };
 
-export default Edit;
+export default Add;
