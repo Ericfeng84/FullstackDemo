@@ -38,5 +38,6 @@
     border: 0;
     background-color: rgb(212, 101, 101);
     color: #fff;
-    padding: 10px;
+    padding-right: 20px;
+    margin-right: auto;
   }

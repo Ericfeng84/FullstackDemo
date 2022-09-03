@@ -1,14 +1,12 @@
 import Item from "./item";
 
-const List = ({ listData, deleteData,editCustomer }) => {
+const List = ({ listData, deleteCustomer,editCustomer }) => {
     console.log(listData);
   return (
     <div className="list">
-      {listData.map((i) => {
-          const { id,firstName, lastName,email} = i;
-          // console.log(id);
+      {listData.map((customer) => {
           return(
-              <Item key={id} firstName={firstName} lastName={lastName} email={email} id={id} deleteData={deleteData} editCustomer={editCustomer} />
+              <Item customer={customer} deleteCustomer={deleteCustomer} editCustomer={editCustomer} />
           )
       })}
     </div>

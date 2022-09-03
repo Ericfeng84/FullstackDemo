@@ -1,52 +1,33 @@
 import { useState, useEffect, useRef } from "react";
-import { v4 } from "uuid";
 
 const Edit = ({ currentCustomer, updateCustomer }) => {
-  function slickButton() {
-      const customer =  {
-          firstName,
-          LastName:lastName,
-          email,
-      }
-      console.log(customer)
 
-      updateCustomer(customer);
+
+  const [editCustomer, setEditCustomer] =useState({currentCustomer});
+
+  function handleInputChange(event){
+      const {name, value} = event.target;
+      setEditCustomer({...editCustomer, [name]:value})
   }
 
-  const [firstName, setFirstName] = useState(currentCustomer.firstName);
-  function updateFirstName(e) {
-    setFirstName(e.target.value);
-    console.log(firstName);
-  }
-
-  const [lastName, setLastname] = useState(currentCustomer.LastName);
-  function updateLastName(e) {
-    setLastname(e.target.value);
-    console.log(lastName);
-  }
-
-  const [email, setEmail] = useState(currentCustomer.email);
-    function updateEmail(e) {
-        setEmail(e.target.value);
-    console.log(email);
-  }
+    function clickButton() {
+        updateCustomer(editCustomer);
+    }
 
     useEffect(() => {
-      setFirstName(currentCustomer.firstName);
-      setLastname(currentCustomer.LastName);
-      setEmail(currentCustomer.email)
+        setEditCustomer(currentCustomer)
     }, [currentCustomer]);
 
   return (
     <div>
       <h1>Edit Customer Register</h1>
       <p>First Name</p>
-      <input type="text" value={firstName} onChange={updateFirstName}></input>
+      <input type="text" name="firstName" value={editCustomer.firstName} onChange={handleInputChange}></input>
       <p>Last Name</p>
-      <input type="text" value={lastName} onChange={updateLastName} />
+      <input type="text" name="lastName" value={editCustomer.lastName} onChange={handleInputChange} />
       <p>Email</p>
-      <input type="email" value={email} onChange={updateEmail} />
-      <button className="add" onClick={slickButton}>
+      <input type="email" name="email" value={editCustomer.email} onChange={handleInputChange} />
+      <button className="add" onClick={clickButton}>
         修改
       </button>
     </div>

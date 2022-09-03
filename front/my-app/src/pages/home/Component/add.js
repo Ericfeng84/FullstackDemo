@@ -1,50 +1,31 @@
-import { useState, useEffect, useRef } from "react";
-import { v4 } from "uuid";
+import { useState } from "react";
 
-const Add = ({ setList,addCustomer }) => {
-  function slickButton() {
-      const customer =  {
-          firstName,
-          LastName:lastName,
-          email,
-      }
-      console.log(customer)
+const Add = ({ addCustomer }) => {
+    const [newCustomer, setNewCustomer] =useState({});
 
-      addCustomer(customer);
-  }
+    function handleInputChange(event){
+        const {name, value} = event.target;
+        setNewCustomer({...newCustomer, [name]:value})
+    }
 
-  const [firstName, setFirstName] = useState();
-  function updateFirstName(e) {
-    setFirstName(e.target.value);
-    console.log(firstName);
-  }
+    function clickButton() {
+        addCustomer(newCustomer);
+    }
 
-  const [lastName, setLastname] = useState();
-  function updateLastName(e) {
-    setLastname(e.target.value);
-    console.log(lastName);
-  }
-
-  const [email, setEmail] = useState();
-    function updateEmail(e) {
-        setEmail(e.target.value);
-    console.log(email);
-  }
-
-  return (
-    <div>
-      <h1>New Customer Register</h1>
-      <p>First Name</p>
-      <input type="text" value={firstName} onChange={updateFirstName}></input>
-      <p>Last Name</p>
-      <input type="text" value={lastName} onChange={updateLastName} />
-      <p>Email</p>
-      <input type="email" value={email} onChange={updateEmail} />
-      <button className="add" onClick={slickButton}>
-        新增
-      </button>
-    </div>
-  );
+    return (
+        <div>
+            <h1>New Customer Register</h1>
+            <p>First Name</p>
+            <input type="text" name="firstName" value={newCustomer.firstName} onChange={handleInputChange}></input>
+            <p>Last Name</p>
+            <input type="text" name="lastName" value={newCustomer.lastName} onChange={handleInputChange} />
+            <p>Email</p>
+            <input type="email" name="email" value={newCustomer.email} onChange={handleInputChange} />
+            <button className="add" onClick={clickButton}>
+                新增
+            </button>
+        </div>
+    );
 };
 
 export default Add;

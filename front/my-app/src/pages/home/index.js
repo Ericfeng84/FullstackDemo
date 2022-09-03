@@ -41,29 +41,30 @@ const Home = () => {
   }
 
   function addCustomer(customer){
-    console.log("PostCustomer"+customer)
+    console.log("PostCustomer" + customer)
     postData(customer).then(()=>fetchCustomer(setCustomerList))
-    console.log("Post Refresh")
+    console.log(customer)
 
   }
 
   //Update Customer
   function updateCustomer(customer){
-    console.log("updateCustomer"+customer)
-    // postData(customer).then(()=>fetchCustomer(setCustomerList))
-    // console.log("Post Refresh")
+    console.log("update Customer");
+    console.log(customer)
 
   }
 
-  // useEffect(() => {
-  //   postData(customer);
-  // }, [customer]);
+  function deleteCustomer(customer){
+    console.log("delete Customer");
+    console.log(customer)
+
+  }
 
   return (
     <div className="app">
-      <Add setList={setCustomerList} setNewCustomer={setCustomer} addCustomer={addCustomer} />
+      <Add addCustomer={addCustomer} />
       <Edit currentCustomer={customer} updateCustomer={updateCustomer}/>
-      <List listData={customerList} deleteData={setCustomerList} editCustomer={setCustomer}  />
+      <List listData={customerList} deleteCustomer={deleteCustomer} editCustomer={setCustomer}  />
     </div>
   );
 };

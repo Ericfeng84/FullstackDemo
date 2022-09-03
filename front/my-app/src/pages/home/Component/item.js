@@ -1,30 +1,23 @@
-const Item = ({ firstName, lastName, email, id,deleteData,editCustomer }) => {
-    console.log(firstName);
+const Item = ({ customer,deleteCustomer,editCustomer }) => {
     function deleteItem() {
-        deleteData(function (prev) {
-    return prev.filter(item=>item.id!==id)
-})
+        deleteCustomer(customer)
     }
 
     function updateItem(){
-        editCustomer(
-            {
-                firstName,
-                LastName:lastName,
-                email,
-                id
-            }
-        )
+        editCustomer(customer)
     }
 
   return (
     <div className="item">
       <div>
-        <p>{email}</p>
-        <p>{`${firstName} ${lastName}`}</p>
+        <p>{customer.email}</p>
+        <p>{`${customer.firstName} ${customer.lastName}`}</p>
       </div>
-        <button className="remove" onClick={updateItem}>修改</button>
-        <button className="remove" onClick={deleteItem}>删除</button>
+        <div>
+            <button className="remove" onClick={updateItem}>修改</button>
+            <button className="remove" onClick={deleteItem}>删除</button>
+        </div>
+
     </div>
   );
 };
