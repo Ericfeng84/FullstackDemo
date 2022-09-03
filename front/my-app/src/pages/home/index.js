@@ -47,6 +47,9 @@ const Home = () => {
 
   }
 
+  //Update Customer
+
+
   // useEffect(() => {
   //   postData(customer);
   // }, [customer]);
