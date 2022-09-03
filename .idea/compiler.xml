@@ -13,12 +13,12 @@
         <module name="amqp" />
         <module name="fraud" />
         <module name="kafka" />
+        <module name="eureka-server" />
         <module name="customer" />
         <module name="eureka_Server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="eureka-server" target="17" />
       <module name="untitled" target="17" />
     </bytecodeTargetLevel>
   </component>
