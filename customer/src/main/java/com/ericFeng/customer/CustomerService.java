@@ -5,19 +5,27 @@ import com.EricFeng.clients.fraud.FraudClient;
 import com.EricFeng.clients.notification.NewNotification;
 import com.EricFeng.clients.notification.NotificationClient;
 import com.ericfeng.amqp.RabbitMQMessageProducer;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
+
+@Slf4j
 @Service
-public record CustomerService(CustomerRepository customerRepository,
-                              RestTemplate restTemplate,
-                              FraudClient fraudClient,
-                              RabbitMQMessageProducer rabbitMQMessageProducer,
-                              NotificationClient notificationClient,
-                              KafkaTemplate<String, String> kafkaTemplate) {
+@AllArgsConstructor
+public class CustomerService {
+    private CustomerRepository customerRepository;
+    private RestTemplate restTemplate;
+    private FraudClient fraudClient;
+    private RabbitMQMessageProducer rabbitMQMessageProducer;
+    private NotificationClient notificationClient;
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     public void registerCustomer(CustomerRegistrationRequest request){
         Customer customer=Customer.builder().
@@ -34,7 +42,7 @@ public record CustomerService(CustomerRepository customerRepository,
 //                "http://FRAUD/.api/v1/fraud/{customerID}",
 //                CheckFraudResponse.class, customer.getId()
 //        );
-
+        log.info("customer created {}",customer.getId());
         CheckFraudResponse checkFraudResponse = fraudClient.CheckFraudHistory(customer.getId());
 
         if (checkFraudResponse.isFraud()){
@@ -56,6 +64,27 @@ public record CustomerService(CustomerRepository customerRepository,
     }
 
     public List<Customer> getAllCustomer() {
-        return customerRepository.findAll();
+        return customerRepository.findAll();};
+
+    @Transactional
+    public void updateByID(Customer customer,Long customerID) {
+        System.out.println(customer);
+        Optional<Customer> customerOptional = customerRepository.findById(customerID);
+
+
+        if(customerOptional.isPresent()){
+            Customer _customer = customerOptional.get();
+            _customer.setFirstName(customer.getFirstName());
+            _customer.setLastName(customer.getLastName());
+            _customer.setEmail(customer.getEmail());
+            customerRepository.save(_customer)
+            ;
+        }
+    };
+
+    public void deleteByID(Long customerID){
+        customerRepository.deleteById(customerID);
     }
+
 }
+

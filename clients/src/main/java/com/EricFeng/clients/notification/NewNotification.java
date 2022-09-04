@@ -2,7 +2,7 @@ package com.EricFeng.clients.notification;
 
 
 public record NewNotification(
-        Integer customerID,
+        Long customerID,
         String msg
 ) {
 

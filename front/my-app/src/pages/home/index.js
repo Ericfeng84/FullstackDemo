@@ -26,9 +26,7 @@ const Home = () => {
 
   // Post Request
   async function postData(newCustomer) {
-    console.log("start post", newCustomer, JSON.stringify({ newCustomer }));
-      const body = JSON.stringify( newCustomer );
-      console.log(body)
+    const body = JSON.stringify( newCustomer );
       
     await fetch(API_GET_DATA, {
       method: "POST",
@@ -39,8 +37,22 @@ const Home = () => {
       body:body,
     });
   }
+  //PUT request
+  async function putData(Customer) {
+    const body = JSON.stringify(Customer);
+    console.log(`${API_GET_DATA}${Customer.id}`)
 
-  function addCustomer(customer){
+    await fetch(`${API_GET_DATA}${Customer.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: body,
+    })
+  };
+
+    function addCustomer(customer){
     console.log("PostCustomer" + customer)
     postData(customer).then(()=>fetchCustomer(setCustomerList))
     console.log(customer)
@@ -50,12 +62,25 @@ const Home = () => {
   //Update Customer
   function updateCustomer(customer){
     console.log("update Customer");
+    putData(customer).then(()=>fetchCustomer(setCustomerList))
     console.log(customer)
 
   }
 
+  //delete
+  async function deleteData(customer) {
+    await fetch(`${API_GET_DATA}${customer.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+  }
+
   function deleteCustomer(customer){
     console.log("delete Customer");
+    deleteData(customer).then(()=>fetchCustomer(setCustomerList))
     console.log(customer)
 
   }
@@ -69,4 +94,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Home

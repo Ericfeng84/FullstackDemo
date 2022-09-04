@@ -15,6 +15,7 @@ import java.util.Objects;
 @NoArgsConstructor
 public class Customer {
 
+
     @Id
     @SequenceGenerator(
             name = "customer_id_sequence",
@@ -24,7 +25,7 @@ public class Customer {
             strategy = GenerationType.SEQUENCE,
             generator = "customer_id_sequence"
     )
-    private Integer id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;

@@ -25,6 +25,6 @@ public class Notification {
 
     )
     private Integer id;
-    private Integer customerID;
+    private Long customerID;
     private String msg;
 }

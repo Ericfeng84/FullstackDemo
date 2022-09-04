@@ -1,7 +1,8 @@
-/Users/fengkang/Desktop/amigosservices/customer/src/main/java/com/ericFeng/customer/CustomerConfig.java
-/Users/fengkang/Desktop/amigosservices/customer/src/main/java/com/ericFeng/customer/CustomerRegistrationRequest.java
-/Users/fengkang/Desktop/amigosservices/customer/src/main/java/com/ericFeng/customer/CustomerController.java
-/Users/fengkang/Desktop/amigosservices/customer/src/main/java/com/ericFeng/customer/CustomerApplication.java
-/Users/fengkang/Desktop/amigosservices/customer/src/main/java/com/ericFeng/customer/CustomerRepository.java
-/Users/fengkang/Desktop/amigosservices/customer/src/main/java/com/ericFeng/customer/Customer.java
-/Users/fengkang/Desktop/amigosservices/customer/src/main/java/com/ericFeng/customer/CustomerService.java
+/Users/fengkang/Desktop/FullStackSpringBootReactDemo/customer/src/main/java/com/ericFeng/customer/CustomerRepository.java
+/Users/fengkang/Desktop/FullStackSpringBootReactDemo/customer/src/main/java/com/ericFeng/customer/CustomerConfig.java
+/Users/fengkang/Desktop/FullStackSpringBootReactDemo/customer/src/main/java/com/ericFeng/customer/CustomerApplication.java
+/Users/fengkang/Desktop/FullStackSpringBootReactDemo/customer/src/main/java/com/ericFeng/customer/CustomerService.java
+/Users/fengkang/Desktop/FullStackSpringBootReactDemo/customer/src/main/java/com/ericFeng/customer/CustomerRegistrationRequest.java
+/Users/fengkang/Desktop/FullStackSpringBootReactDemo/customer/src/main/java/com/ericFeng/customer/CustomerController.java
+/Users/fengkang/Desktop/FullStackSpringBootReactDemo/customer/src/main/java/com/ericFeng/customer/index.java
+/Users/fengkang/Desktop/FullStackSpringBootReactDemo/customer/src/main/java/com/ericFeng/customer/Customer.java

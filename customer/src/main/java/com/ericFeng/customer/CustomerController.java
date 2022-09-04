@@ -25,4 +25,17 @@ public record  CustomerController (CustomerService customerService){
 
         customerService.registerCustomer(customerRequest);
     }
+
+    @PutMapping(path = "{customerID}")
+    public void updateStudent(@PathVariable("customerID") long customerID,
+                              @RequestBody Customer customer) {
+        customerService.updateByID(customer, customerID);
+    }
+
+    @DeleteMapping(path = "{customerID}")
+    public void deleteCustomer(@PathVariable("customerID") long customerID){
+        customerService.deleteByID(customerID);
+    }
+
+
 }
